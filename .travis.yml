@@ -12,10 +12,8 @@ before_script:
 script:
   - pwd
   - ls -l
-  - cd client
-  - ls -l
-  - npm install
-  - ui5 --config ./uimodule/ui5.yaml build
+  - npm install ./client --prefix ./client/node_modules
+  - ui5 --config ./client/uimodule/ui5.yaml build
   - cd ..
 
 after_success:
