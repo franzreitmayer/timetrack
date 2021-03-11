@@ -14,7 +14,6 @@ script:
   - ls -l
   - npm install ./client --prefix ./client/node_modules
   - ui5 --config ./client/uimodule/ui5.yaml build
-  - cd ..
 
 after_success:
   - echo "nothing todo so far"
