@@ -1,4 +1,4 @@
- <mvc:View controllerName="eu.reitmayer.tt.client.timeTrackingClient.controller.MainView"
+ <mvc:View controllerName="eu.reitmayer.ttrack.client.timeTrack.controller.MainView"
   displayBlock="true"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">

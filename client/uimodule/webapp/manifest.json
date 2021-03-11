@@ -1,7 +1,7 @@
 {
   "_version": "1.21.0",
   "sap.app": {
-    "id": "eu.reitmayer.tt.client.timeTrackingClient",
+    "id": "eu.reitmayer.ttrack.client.timeTrack",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -29,7 +29,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "rootView": {
-      "viewName": "eu.reitmayer.tt.client.timeTrackingClient.view.MainView",
+      "viewName": "eu.reitmayer.ttrack.client.timeTrack.view.MainView",
       "type": "XML",
       "async": true,
       "id": "idAppControl"
@@ -50,7 +50,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "eu.reitmayer.tt.client.timeTrackingClient.i18n.i18n"
+          "bundleName": "eu.reitmayer.ttrack.client.timeTrack.i18n.i18n"
         }
       }
     },
@@ -65,7 +65,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "eu.reitmayer.tt.client.timeTrackingClient.view",
+        "viewPath": "eu.reitmayer.ttrack.client.timeTrack.view",
         "controlId": "idAppControl",
         "controlAggregation": "pages",
         "async": true

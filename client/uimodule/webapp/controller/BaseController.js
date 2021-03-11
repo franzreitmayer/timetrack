@@ -2,11 +2,11 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/core/routing/History",
   "sap/ui/core/UIComponent",
-  "eu/reitmayer/tt/client/timeTrackingClient/model/formatter"
+  "eu/reitmayer/ttrack/client/timeTrack/model/formatter"
 ], function(Controller, History, UIComponent, formatter) {
   "use strict";
 
-  return Controller.extend("eu.reitmayer.tt.client.timeTrackingClient.controller.BaseController", {
+  return Controller.extend("eu.reitmayer.ttrack.client.timeTrack.controller.BaseController", {
 
     formatter: formatter,
 

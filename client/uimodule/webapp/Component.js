@@ -1,11 +1,11 @@
 sap.ui.define([
   "sap/ui/core/UIComponent",
   "sap/ui/Device",
-  "eu/reitmayer/tt/client/timeTrackingClient/model/models"
+  "eu/reitmayer/ttrack/client/timeTrack/model/models"
 ], function(UIComponent, Device, models) {
   "use strict";
 
-  return UIComponent.extend("eu.reitmayer.tt.client.timeTrackingClient.Component", {
+  return UIComponent.extend("eu.reitmayer.ttrack.client.timeTrack.Component", {
 
     metadata: {
       manifest: "json"
