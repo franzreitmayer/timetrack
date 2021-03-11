@@ -1,0 +1,16 @@
+{
+  "generator-easy-ui5": {
+    "projectname": "timeTrackingClient",
+    "namespace": "eu.reitmayer.tt.client",
+    "platform": "Static webserver",
+    "viewtype": "XML",
+    "viewname": "MainView",
+    "ui5libs": "Local resources (OpenUI5)",
+    "newdir": false,
+    "namespaceURI": "eu/reitmayer/tt/client",
+    "uimodules": [
+      "uimodule"
+    ],
+    "setupCompleted": true
+  }
+}
