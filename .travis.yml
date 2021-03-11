@@ -12,7 +12,10 @@ before_script:
 script:
   - pwd
   - ls -l
+  - cd client
+  - ls -l
   - ui5 --config ./uimodule/ui5.yaml build
+  - cd ..
 
 after_success:
   - echo "nothing todo so far"
