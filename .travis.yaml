@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 14
+
+install:
+  npm install @ui5/cli
+  npm install serverless
+
+before_script:
+  - echo "not tests"
+
+script:
+  - pwd
+  - ui5 --config ./uimodule/ui5.yaml build
+
+after_success:
+  - echo "nothing todo so far"
+
