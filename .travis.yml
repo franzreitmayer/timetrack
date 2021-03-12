@@ -5,6 +5,7 @@ node_js:
 install:
   - echo "nothing to install"
   - npm install ui5-middleware-livereload @ui5/cli serverless
+  - aws --version
 
 before_script:
   - echo "nothing"
