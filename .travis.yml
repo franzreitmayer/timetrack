@@ -18,6 +18,7 @@ script:
   - ls -l
   - which npm
   - npm install
+  - ui5 --config ./uimodule/ui5.yaml build
   - cd ..
 
 after_success:
