@@ -17,6 +17,7 @@ script:
   - pwd
   - ls -l
   - which npm
+  - npm install
   - cd ..
 
 after_success:
