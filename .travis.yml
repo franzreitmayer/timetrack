@@ -14,6 +14,7 @@ script:
   - ls -l
   - npm install ./client --prefix ./client/node_modules
   - cd client
+  - ls -l
   - ui5 --config ./uimodule/ui5.yaml build
   - cd ..
 
