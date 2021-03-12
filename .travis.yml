@@ -12,7 +12,7 @@ before_script:
 script:
   - pwd
   - ls -l
-  - ui5 --config ./client/uimodule/ui5.yaml build
+  - ui5 --verbose --config ./client/uimodule/ui5.yaml build
   - cd ..
 
 after_success:
