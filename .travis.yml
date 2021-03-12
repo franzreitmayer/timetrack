@@ -4,6 +4,8 @@ node_js:
 
 install:
   - echo "nothing to install"
+  - which npm
+  
 before_script:
   - cd client
   - ls -l
