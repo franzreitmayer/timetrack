@@ -4,19 +4,16 @@ node_js:
 
 install:
   - echo "nothing to install"
-  - which npm
-  
+  - npm install ui5-middleware-livereload
+  - npm install @ui5/cli
+  - npm install serverless
+
 before_script:
-  - cd client
-  - ls -l
-  - npm install
-  - ls -l
-  - cd ..
+  - echo "nothing"
 
 script:
   - pwd
   - ls -l
-  - npm install ./client --prefix ./client/node_modules
   - cd client
   - ls -l
   - ui5 --config ./uimodule/ui5.yaml build
