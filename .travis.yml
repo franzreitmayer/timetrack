@@ -11,8 +11,11 @@ before_script:
 
 script:
   - pwd
+  - which npm
   - ls -l
-  - ui5 --config ./client/uimodule/ui5.yaml build
+  - cd client
+  - pwd
+  - which npm
   - cd ..
 
 after_success:
