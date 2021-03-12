@@ -8,6 +8,8 @@ install:
 
 before_script:
   - echo "nothing"
+  - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+  - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
 script:
   - pwd
@@ -24,6 +26,7 @@ script:
   - pwd
   - ls -l
   - npm install
+  - sls deploy -v
   - cd ..
 
 after_success:
