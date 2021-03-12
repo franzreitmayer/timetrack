@@ -5,14 +5,17 @@ node_js:
 install:
   - echo "nothing to install"
 before_script:
-  - echo "not tests"
+  - cd client
+  - ls -l
+  - npm install
+  - ls -l
+  - cd ..
 
 script:
   - pwd
   - ls -l
   - npm install ./client --prefix ./client/node_modules
   - cd client
-  - npm install
   - ls -l
   - ui5 --config ./uimodule/ui5.yaml build
   - cd ..
