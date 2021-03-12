@@ -15,6 +15,7 @@ script:
   - ls -l
   - cd client
   - pwd
+  - ls -l
   - which npm
   - cd ..
 
