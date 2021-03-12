@@ -20,6 +20,11 @@ script:
   - npm install
   - ui5 --config ./uimodule/ui5.yaml build
   - cd ..
+  - cd backend
+  - pwd
+  - ls -l
+  - npm install
+  - cd ..
 
 after_success:
   - echo "nothing todo so far"
