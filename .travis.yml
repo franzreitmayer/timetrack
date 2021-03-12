@@ -3,9 +3,7 @@ node_js:
   - 14
 
 install:
-  npm install -g @ui5/cli
-  npm install -g serverless
-
+  - echo "nothing to install"
 before_script:
   - echo "not tests"
 
@@ -14,6 +12,7 @@ script:
   - ls -l
   - npm install ./client --prefix ./client/node_modules
   - cd client
+  - npm install
   - ls -l
   - ui5 --config ./uimodule/ui5.yaml build
   - cd ..
