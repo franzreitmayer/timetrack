@@ -21,6 +21,7 @@ script:
   - which npm
   - npm install
   - ui5 --config ./uimodule/ui5.yaml build
+  - pwd
   - ls -l
   - cd ..
   - cd backend
@@ -35,7 +36,8 @@ deploy:
   access_key_id: ${AWS_ACCESS_KEY_ID}
   secret_access_key: ${AWS_SECRET_ACCESS_KEY}
   bucket: ${AWS_BUCKET}
-  local_dir: /home/travis/build/franzreitmayer/timetrack/client/dist
+  skip_clean: true
+  local_dir: /home/travis/build/franzreitmayer/timetrack/client/dist/
   on: 
     branch: dev
 
