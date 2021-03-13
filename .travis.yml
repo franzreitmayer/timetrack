@@ -35,6 +35,8 @@ deploy:
   secret_access_key: ${AWS_SECRET_ACCESS_KEY}
   bucket: ${AWS_BUCKET}
   local_dir: ./client/dist
+  on: 
+    branch: dev
 
 after_success:
   - echo "nothing todo so far"
