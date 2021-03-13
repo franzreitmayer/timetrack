@@ -21,6 +21,7 @@ script:
   - which npm
   - npm install
   - ui5 --config ./uimodule/ui5.yaml build
+  - ls -l
   - cd ..
   - cd backend
   - pwd
