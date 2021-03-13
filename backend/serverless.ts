@@ -24,7 +24,8 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      TTRACK_TABLE: "TTRACK-${self:provider.stage}"
+      TTRACK_TABLE: "TTRACK-${self:provider.stage}",
+      SECONDARY_INDEX: "TTRACK-Indx-User-${self:provider.stage}"
     },
     lambdaHashingVersion: '20201221',
   },
@@ -52,6 +53,19 @@ const serverlessConfiguration: AWS = {
             },
             {
               AttributeName: "trackingId", KeyType: "RANGE"
+            }
+          ],
+          LocalSecondaryIndexes: [
+            {
+              IndexName: "${self:provider.environment.SECONDARY_INDEX}",
+              KeySchema: [
+                {
+                  AttributeName: "userId", KeyType: "HASH"
+                },
+                {
+                  AttributeName: "trackingId", KeyType: "RANGE"
+                }
+              ]
             }
           ],
           BillingMode: "PAY_PER_REQUEST",
