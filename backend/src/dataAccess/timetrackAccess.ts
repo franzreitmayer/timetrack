@@ -6,14 +6,14 @@ import { Timetrack } from '@models/Timetrack'
 
 const XAWS = AWSXRay.captureAWS(AWS)
 
-export class TodoItemAccess {
+export class TimetrackAccess {
     constructor(
         private readonly docClient: DocumentClient = createDynamoDBClient(),
         private readonly timetrackTable = process.env.TTRACK_TABLE,
         private readonly indexName = process.env.SECONDARY_INDEX,
         private readonly LOGGER = createLogger("TIMETRACK_ACCESS")) { }
 
-    async getAllTimetrackItems(userId: String): Promise<Timetrack[]> {
+    async getAllTimetrackings(userId: String): Promise<Timetrack[]> {
         this.LOGGER.info('Getting all todo items')
 
         // const result = await this.docClient.scan(

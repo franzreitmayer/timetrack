@@ -6,7 +6,8 @@
       "@libs/*": ["src/libs/*"],
       "@dataAccess/*": ["src/dataAccess/*"],
       "@util/*": ["src/util/*"],
-      "@models/*": ["src/businessModel/*"]
+      "@models/*": ["src/businessModel/*"],
+      "@businessLogic/*": ["src/businessLogic/*"]
     }
   }
 }

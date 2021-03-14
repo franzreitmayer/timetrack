@@ -9,5 +9,20 @@ export default {
         }
       
     }
+  ],
+  iamRoleStatements: [
+    {
+      Effect: "Allow",
+      Action: ["dynamodb:Scan", "dynamod:Query"],
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TTRACK_TABLE}/*"
+    },
+    {
+      Effect: "Allow",
+      Action: [
+        "logs:PutLogeEvent",
+        "logs:CreateLogStream",
+        "logs:CreateLogGroup"],
+      Resource: "*"
+    }
   ]
 }
