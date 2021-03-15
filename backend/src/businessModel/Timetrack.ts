@@ -5,6 +5,6 @@ export interface Timetrack {
     trackTo: string
     shortDescription: string
     longDescription: string
-    invoiced: string
+    invoiced: boolean
     attachmentUrl?: string
   }

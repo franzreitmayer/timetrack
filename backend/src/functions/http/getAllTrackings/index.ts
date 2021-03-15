@@ -13,7 +13,7 @@ export default {
   iamRoleStatements: [
     {
       Effect: "Allow",
-      Action: ["dynamodb:Scan", "dynamod:Query"],
+      Action: ["dynamodb:Scan", "dynamodb:Query"],
       Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TTRACK_TABLE}/*"
     },
     {
