@@ -17,9 +17,9 @@ const getAllTrackings: APIGatewayProxyHandler = async () => {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    body: JSON.stringify({
+    body: JSON.stringify(JSON.stringify({
       items: items
-    })
+    }))
   }
 }
 

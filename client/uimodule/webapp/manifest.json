@@ -52,6 +52,10 @@
         "settings": {
           "bundleName": "eu.reitmayer.ttrack.client.timeTrack.i18n.i18n"
         }
+      },
+      "": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "testdata.json"
       }
     },
     "resources": {

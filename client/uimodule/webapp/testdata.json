@@ -1,0 +1,35 @@
+{
+    "items": [
+        {
+            "trackingId": "1",
+            "shortDescription": "Codieren",
+            "attachmentURL": "http://www.spiegel.de",
+            "userId": "DUMMY",
+            "trackTo": "2011-10-05T14:48:00.000Z",
+            "trackFrom": "2011-10-05T14:48:00.000Z",
+            "longDescription": "the fu...ing serverless framework doesn't work",
+            "invoiced": false
+        },
+        {
+            "trackingId": "2",
+            "shortDescription": "Scrum Meeting - Planung",
+            "attachmentURL": "http://www.spiegel.de",
+            "userId": "DUMMY",
+            "trackTo": "2011-10-05T14:48:00.000Z",
+            "trackFrom": "2011-10-05T14:48:00.000Z",
+            "longDescription": "regular planing meeting for sprint 15",
+            "invoiced": false
+        },
+        {
+            "trackingId": "3",
+            "shortDescription": "Stand-Up",
+            "attachmentURL": "http://www.spiegel.de",
+            "userId": "DUMMY",
+            "trackTo": "2011-10-05T14:48:00.000Z",
+            "trackFrom": "2011-10-05T14:48:00.000Z",
+            "longDescription": "Daily Standup",
+            "invoiced": false
+        }
+
+    ]
+}

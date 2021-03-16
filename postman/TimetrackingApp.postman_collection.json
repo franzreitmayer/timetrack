@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "5427932b-7156-4ab3-8c66-64a6df42cde4",
+		"name": "TimetrackingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "Get All TimeTrackings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

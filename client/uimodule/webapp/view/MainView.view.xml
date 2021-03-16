@@ -1,11 +1,40 @@
  <mvc:View controllerName="eu.reitmayer.ttrack.client.timeTrack.controller.MainView"
   displayBlock="true"
   xmlns="sap.m"
+  xmlns:t="sap.ui.table"
   xmlns:mvc="sap.ui.core.mvc">
   <App id="idAppControl" >
     <pages>
       <Page title="{i18n>title}">
-        <content></content>
+        <content>
+
+          <t:Table rows="{/items}"
+          id="table"
+          visibleRowCount="7"
+				minAutoRowCount="5">
+            <t:columns>
+            <t:Column width="25%">
+              <Label text="From" />
+                <t:template>
+                <Text text="{trackFrom}" wrapping="true" />
+                </t:template>
+            </t:Column>
+            <t:Column width="25%">
+              <Label text="To" />
+                <t:template>
+                <Text text="{trackTo}" wrapping="true" />
+                </t:template>
+            </t:Column>
+            <t:Column width="25%">
+              <Label text="Short Description" />
+                <t:template>
+                <Text text="{shortDescription}" wrapping="true" />
+                </t:template>
+            </t:Column>
+            </t:columns>
+
+          </t:Table>
+        </content>
       </Page>
     </pages>
   </App>
