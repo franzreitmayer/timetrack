@@ -7,7 +7,8 @@
       "@dataAccess/*": ["src/dataAccess/*"],
       "@util/*": ["src/util/*"],
       "@models/*": ["src/businessModel/*"],
-      "@businessLogic/*": ["src/businessLogic/*"]
+      "@businessLogic/*": ["src/businessLogic/*"],
+      "@auth/*": ["src/authorization/*", "src/functions/authorization/*"]
     }
   }
 }

@@ -9,6 +9,7 @@
       <Toolbar>
         <Button text="Log On" press="clickLogon"/>
         <Button text="Log Off" press="clickLogoff" />
+        <Button text="Get Access Token" press="clickGetAccessToken" />
       </Toolbar>
         <content>
 
