@@ -6,6 +6,10 @@
   <App id="idAppControl" >
     <pages>
       <Page title="{i18n>title}">
+      <Toolbar>
+        <Button text="Log On" press="clickLogon"/>
+        <Button text="Log Off" press="clickLogoff" />
+      </Toolbar>
         <content>
 
           <t:Table rows="{/items}"

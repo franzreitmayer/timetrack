@@ -8,7 +8,13 @@
       "version": "1.0.0"
     },
     "title": "{{appTitle}}",
-    "description": "{{appDescription}}"
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "ttapi": {
+        "uri": "https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack",
+        "type": "JSON"
+      }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -54,8 +60,7 @@
         }
       },
       "": {
-        "type": "sap.ui.model.json.JSONModel",
-        "uri": "testdata.json"
+        "dataSource": "ttapi"
       }
     },
     "resources": {

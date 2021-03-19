@@ -5,10 +5,11 @@ import 'source-map-support/register';
 import { APIGatewayProxyHandler } from 'aws-lambda'
 //import { formatJSONResponse } from '@libs/apiGateway';
 import { getAllTimetrackings } from '@businessLogic/timetrack'
-import { middyfy } from '@libs/lambda';
+import { middyfy } from '@libs/lambda'
 
 
-const getAllTrackings: APIGatewayProxyHandler = async () => {
+const getAllTrackings: APIGatewayProxyHandler = async (event) => {
+  console.log(JSON.stringify(event))
   const items = await getAllTimetrackings("DUMMY");
   return {
 
@@ -17,9 +18,9 @@ const getAllTrackings: APIGatewayProxyHandler = async () => {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    body: JSON.stringify(JSON.stringify({
+    body: JSON.stringify({
       items: items
-    }))
+    })
   }
 }
 
