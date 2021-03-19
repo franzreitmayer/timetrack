@@ -1,28 +1,20 @@
 sap.ui.define([
     "eu/reitmayer/ttrack/client/timeTrack/controller/BaseController",
-    "sap/ui/model/json/JSONModel"
-], function(Controller, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageBox"
+], function(Controller, JSONModel, MessageBox) {
     "use strict";
 
     return Controller.extend("eu.reitmayer.ttrack.client.timeTrack.controller.MainView", {
 
         onInit: async function() {
             // alert('Main controller initialized');
-            var jsonData = null;
-            $.ajax({
-                method: "GET",
-                url: "https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack",
-                dataType: "JSON",
-                async: false
-            }).done(function(data) {
-                console.log(data)
-                jsonData = data;
-            });
-            var oModel = new JSONModel(jsonData);
-            this.getView().setModel(oModel);
+            console.log(authenticationClient);
+            await this.handleAuthentication();
+
+            alert("auth");
 
         },
-
 
         clickLogon: async function(event) {
             //alert("logon");
@@ -72,6 +64,44 @@ sap.ui.define([
 
             const idToken = await auth.getIdTokenClaims();
             console.log("Id Token: " + JSON.stringify(idToken));
+        },
+
+        handleAuthentication: async function() {
+            let auth = await this.createAuth();
+
+            if (!await auth.isAuthenticated()) {
+                await this.login();
+            }
+
+        },
+
+        login: async function() {
+            let auth = await this.createAuth();
+
+            const options = {
+                    redirect_uri: "http://localhost:8080/index.html"
+                }
+                // console.log(this.auth);
+
+            await auth.loginWithRedirect(options);
+        },
+
+        createAuth: async function() {
+            try {
+                var auth0 = await createAuth0Client({
+                    domain: "reitmayer.eu.auth0.com",
+                    client_id: "LF6aDev4lIeglOOGdajUE4ZT9cS9yTZB"
+                });
+                return auth0;
+            } catch (err) {
+                MessageBox.show(
+                    "Error creating authorization client", {
+                        icon: MessageBox.Icon.ERROR,
+                        title: "Error on authorization",
+                        actions: [MessageBox.Action.OK]
+                    });
+            }
         }
+
     });
 });
