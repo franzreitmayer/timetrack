@@ -70,7 +70,15 @@ sap.ui.define([
             let auth = await this.createAuth();
 
             if (!await auth.isAuthenticated()) {
+              const query = window.location.search;
+              const shouldParseResult = query.includes("code=") && query.includes("state=");
+              if (shouldParseResult) {
+                auth.handleRedirectCallback();
+                const isAuthenticated = await auth.isAuthenticated();
+                console.log(`authenticated ${isAuthenticated}`);
+               }  else {
                 await this.login();
+              }
             }
 
         },
