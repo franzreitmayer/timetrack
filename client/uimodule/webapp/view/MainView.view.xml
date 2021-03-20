@@ -1,46 +1,59 @@
- <mvc:View controllerName="eu.reitmayer.ttrack.client.timeTrack.controller.MainView"
-  displayBlock="true"
+<mvc:View controllerName="eu.reitmayer.ttrack.client.timeTrack.controller.MainView" displayBlock="true"
   xmlns="sap.m"
   xmlns:t="sap.ui.table"
   xmlns:mvc="sap.ui.core.mvc">
-  <App id="idAppControl" >
-    <pages>
-      <Page title="{i18n>title}">
-      <Toolbar>
-        <Button text="Log On" press="clickLogon"/>
-        <Button text="Log Off" press="clickLogoff" />
-        <Button text="Get Access Token" press="clickGetAccessToken" />
-      </Toolbar>
-        <content>
+  <Shell>
+    <App id="idAppControl">
+      <pages>
+        <Page title="{i18n>title}">
+          <Toolbar>
+            <Button text="Log On" press="clickLogon"/>
+            <Button text="Log Off" press="clickLogoff" />
+            <Button text="Get Access Token" press="clickGetAccessToken" />
+            <Button text="Create New Entry" press="clickNewEntry" icon="sap-icon://create-entry-time"/>
+            <Button text="Edit Entry" press="clickEditEntry" icon="sap-icon://edit" />
+            <Button text="Delete Entry" press="clickDeleteEntry" icon="sap-icon://delete" />
+          </Toolbar>
+          <content>
 
-          <t:Table rows="{/items}"
-          id="table"
-          visibleRowCount="7"
-				minAutoRowCount="5">
-            <t:columns>
-            <t:Column width="25%">
-              <Label text="From" />
-                <t:template>
-                <Text text="{trackFrom}" wrapping="true" />
-                </t:template>
-            </t:Column>
-            <t:Column width="25%">
-              <Label text="To" />
-                <t:template>
-                <Text text="{trackTo}" wrapping="true" />
-                </t:template>
-            </t:Column>
-            <t:Column width="25%">
-              <Label text="Short Description" />
-                <t:template>
-                <Text text="{shortDescription}" wrapping="true" />
-                </t:template>
-            </t:Column>
-            </t:columns>
+            <t:Table rows="{/items}" id="table" visibleRowCount="7" minAutoRowCount="5" selectionMode="Single" selectionBehavior="RowOnly">
+              <t:columns>
+                <t:Column >
+                  <Label text="From" />
+                  <t:template>
+                    <Text text="{trackFrom}" wrapping="true" />
+                  </t:template>
+                </t:Column>
+                <t:Column >
+                  <Label text="To" />
+                  <t:template>
+                    <Text text="{trackTo}" wrapping="true" />
+                  </t:template>
+                </t:Column>
+                <t:Column >
+                  <Label text="Short Description" />
+                  <t:template>
+                    <Text text="{shortDescription}" wrapping="true" />
+                  </t:template>
+                </t:Column>
+                <t:Column >
+                  <Label text="Long Description" />
+                  <t:template>
+                    <Text text="{longDescription}" wrapping="true" />
+                  </t:template>
+                </t:Column>
+                <t:Column >
+                  <Label text="Invoiced" />
+                  <t:template>
+                    <Text text="{invoiced}" wrapping="true" />
+                  </t:template>
+                </t:Column>
+              </t:columns>
 
-          </t:Table>
-        </content>
-      </Page>
-    </pages>
-  </App>
+            </t:Table>
+          </content>
+        </Page>
+      </pages>
+    </App>
+  </Shell>
 </mvc:View>

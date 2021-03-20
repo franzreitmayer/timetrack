@@ -1,0 +1,53 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" 
+   xmlns:l="sap.ui.layout"
+   xmlns:u="sap.ui.unified"
+   >
+   <Dialog
+      id="detailDialog"
+      title="Timetracking Detail">
+   
+    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+    
+        <Label text="From" required="true" labelFor="input-from"/>
+        <DateTimePicker
+			id="input-from"
+			placeholder="Enter Date"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"
+            value="{dialog>/trackFrom}"/>
+
+        <Label text="To" required="true" labelFor="input-to"/>
+        <DateTimePicker
+			id="input-to"
+			placeholder="Enter Date"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"
+            value="{dialog>/trackTo}"/>
+
+
+        <Label text="Short Description" labelFor="input-shortdesc"/>
+        <Input id="input-shortdesc" required="true" value="{dialog>/shortDescription}"/>
+
+        <Label text="Long Description" labelFor="input-longdesc"/>
+        <Input id="input-longdesc" required="false" value="{dialog>/longDescription}"/>
+
+        <Label text="Upload Attachment" labelFor="input-upload" />
+        <u:FileUploader
+			id="input-upload"
+			name="myFileUpload"
+			uploadUrl="upload/"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handleUploadComplete"/>
+
+        <CheckBox text="Invoiced" selected="{dialog>/invoiced}"/>
+
+
+    </l:VerticalLayout>
+    <buttons>
+        <Button text="Cancel" icon="sap-icon://decline"/>        
+        <Button text="Save" icon="sap-icon://save" press="onDialogSave" />
+    </buttons>
+   </Dialog>
+</core:FragmentDefinition>
