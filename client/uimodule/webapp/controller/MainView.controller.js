@@ -30,7 +30,7 @@ sap.ui.define([
             });
 
             const options = {
-                redirect_uri: "http://localhost:8080/index.html"
+                redirect_uri: "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html"
             }
             console.log(auth);
 
@@ -46,7 +46,7 @@ sap.ui.define([
                 client_id: "LF6aDev4lIeglOOGdajUE4ZT9cS9yTZB"
             });
             const options = {
-                redirect_uri: "http://localhost:8080/index.html"
+                redirect_uri: "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html"
             }
             await auth.logout(options);
         },
@@ -89,7 +89,7 @@ sap.ui.define([
             let auth = await this.createAuth();
 
             const options = {
-                    redirect_uri: "http://localhost:8080/index.html"
+                    redirect_uri: "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html"
                 }
                 // console.log(this.auth);
 
