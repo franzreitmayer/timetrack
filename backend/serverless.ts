@@ -31,6 +31,10 @@ const serverlessConfiguration: AWS = {
       TTRACK_TABLE: "TTRACK2-${self:provider.stage}",
       SECONDARY_INDEX: "TTRACK-Indx-User-${self:provider.stage}"
     },
+    tracing: {
+      lambda: true,
+      apiGateway: true
+    },
     lambdaHashingVersion: '20201221',
   },
   // import the function via paths

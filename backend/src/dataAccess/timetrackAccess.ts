@@ -80,7 +80,7 @@ export class TimetrackAccess {
                     ":shortDescription":    timetrack.shortDescription,
                     ":longDescription":     timetrack.longDescription,
                     ":invoiced":            timetrack.invoiced,
-                    ":attachmentURL":       timetrack.attachmentUrl
+                    ":attachmentUrl":       timetrack.attachmentUrl
                 }
             }).promise()
             this.LOGGER.info("Successfully updated timetrack", timetrack)
