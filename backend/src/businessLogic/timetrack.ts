@@ -24,6 +24,6 @@ export async function updateTimetracking(timetrack: Timetrack): Promise<Timetrac
     return await timetrackAccess.updateTimetrack(timetrack)
 }
 
-export async function deleteTimetrack(trackId: string, userId: string): Promise<Boolean>{
-    return await timetrackAccess.deleteTimetrack(trackId, userId);
+export async function deleteTimetrack(trackingId: string, userId: string): Promise<Boolean>{
+    return await timetrackAccess.deleteTimetrack(trackingId, userId);
 }

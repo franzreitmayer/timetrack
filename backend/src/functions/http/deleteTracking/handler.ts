@@ -13,13 +13,13 @@ const deleteTracking: APIGatewayProxyHandler = async (event) => {
   console.log(JSON.stringify(event))
   
   // get trackId from patch
-  const trackId = event.pathParameters.trackId
+  const trackingId = event.pathParameters.trackId
 
   // get userid from bearer token
   const userId = await getUserId(event);
 
   // delete the tracking
-  const wasSuccessful = await deleteTimetrack(trackId, userId)
+  const wasSuccessful = await deleteTimetrack(trackingId, userId)
 
   // return the timetracking created back to client
   if (wasSuccessful) {

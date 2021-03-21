@@ -90,21 +90,21 @@ export class TimetrackAccess {
         return timetrack
     }
 
-    async deleteTimetrack(trackId: string, userId: string): Promise<Boolean> {
-        this.LOGGER.info(`deleting timetrack with id: ${trackId} and userId: ${userId}`)
+    async deleteTimetrack(trackingId: string, userId: string): Promise<Boolean> {
+        this.LOGGER.info(`deleting timetrack with id: ${trackingId} and userId: ${userId}`)
 
         try {
             await this.docClient.delete({
                 TableName: this.timetrackTable,
                 Key: {
                     "userId": userId,
-                    "trackId": trackId
+                    "trackingId": trackingId
                 }
             }).promise()
-            this.LOGGER.info(`Successfully deleted timetrack with id ${trackId} and user ${userId}`) 
+            this.LOGGER.info(`Successfully deleted timetrack with id ${trackingId} and user ${userId}`) 
             return true
         } catch (err) {
-            this.LOGGER.error(`Error while deleting trackId: ${trackId} and userId: ${userId}`, err)
+            this.LOGGER.error(`Error while deleting trackingId: ${trackingId} and userId: ${userId}`, err)
             return false
         }
     }
