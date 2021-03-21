@@ -1,23 +1,166 @@
 {
-	"info": {
-		"_postman_id": "5427932b-7156-4ab3-8c66-64a6df42cde4",
-		"name": "TimetrackingApp",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "CRUD",
-			"item": [
-				{
-					"name": "Get All TimeTrackings",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				}
-			]
-		}
-	]
+    "info": {
+        "_postman_id": "242e5aff-f1d5-48ae-8608-12acbc7536a1",
+        "name": "TimetrackingApp",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [{
+        "name": "CRUD",
+        "item": [{
+                "name": "Get All TimeTrackings",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack",
+                        "protocol": "https",
+                        "host": [
+                            "v5d0p4616i",
+                            "execute-api",
+                            "eu-central-1",
+                            "amazonaws",
+                            "com"
+                        ],
+                        "path": [
+                            "dev",
+                            "timetrack"
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Create Timetrack ITem",
+                "request": {
+                    "auth": {
+                        "type": "bearer",
+                        "bearer": [{
+                            "key": "token",
+                            "value": "",
+                            "type": "string"
+                        }]
+                    },
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": " {\r\n            \r\n\r\n            \"shortDescription\": \"Bugfixing\",\r\n            \"attachmentUrl\": \"\",\r\n            \"userId\": \"DUMMY\",\r\n            \"trackTo\": \"2011-10-05T14:48:00.000Z\",\r\n            \"trackFrom\": \"2011-10-05T14:48:00.000Z\",\r\n            \"longDescription\": \"Bugfix in UI5 App wegen falscher Ermittlung der KPI\",\r\n            \"invoiced\": false\r\n        }"
+                    },
+                    "url": {
+                        "raw": "https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack",
+                        "protocol": "https",
+                        "host": [
+                            "v5d0p4616i",
+                            "execute-api",
+                            "eu-central-1",
+                            "amazonaws",
+                            "com"
+                        ],
+                        "path": [
+                            "dev",
+                            "timetrack"
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Update Timetrack Item",
+                "request": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\r\n    \"shortDescription\": \"Bugfixing\",\r\n    \"attachmentUrl\": \"www.hast-du-gesehen.de\",\r\n    \"userId\": \"google-oauth2|112875574953183859203\",\r\n    \"trackTo\": \"2011-10-05T14:48:00.000Z\",\r\n    \"trackFrom\": \"2011-10-05T14:48:00.000Z\",\r\n    \"longDescription\": \"Bugfix in UI5 App wegen falscher Ermittlung der KPI\",\r\n    \"invoiced\": false,\r\n    \"trackingId\": \"50df84fc-8875-492e-9124-f89cbdb822c7\"\r\n}",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack",
+                        "protocol": "https",
+                        "host": [
+                            "v5d0p4616i",
+                            "execute-api",
+                            "eu-central-1",
+                            "amazonaws",
+                            "com"
+                        ],
+                        "path": [
+                            "dev",
+                            "timetrack"
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Delete Timetrack Item",
+                "request": {
+                    "auth": {
+                        "type": "bearer",
+                        "bearer": [{
+                                "key": "password",
+                                "value": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "token",
+                                "value": "",
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack/4ed013d3-6a93-4688-973a-0d9b28fc821b",
+                        "protocol": "https",
+                        "host": [
+                            "v5d0p4616i",
+                            "execute-api",
+                            "eu-central-1",
+                            "amazonaws",
+                            "com"
+                        ],
+                        "path": [
+                            "dev",
+                            "timetrack",
+                            "4ed013d3-6a93-4688-973a-0d9b28fc821b"
+                        ]
+                    }
+                },
+                "response": []
+            }
+        ]
+    }],
+    "auth": {
+        "type": "bearer",
+        "bearer": [{
+            "key": "token",
+            "value": "place your bearer toke here",
+            "type": "string"
+        }]
+    },
+    "event": [{
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ]
 }
