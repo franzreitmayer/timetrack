@@ -55,20 +55,10 @@ sap.ui.define([
         },
 
         clickGetAccessToken: async function(event) {
-            var auth = await createAuth0Client({
-                domain: "reitmayer.eu.auth0.com",
-                client_id: "LF6aDev4lIeglOOGdajUE4ZT9cS9yTZB"
-            });
-            console.log("")
-            try {
-                const token = await auth.getTokenSilently();
-                console.log(`Bearer Token: ${token}`)
-            } catch (err) {
-                console.log("Cannot get token " + JSON.stringify(err));
-            }
+            var auth = await this.createAuth();
 
             const idToken = await auth.getIdTokenClaims();
-            console.log("Id Token: " + JSON.stringify(idToken));
+            console.log(`Please use Brearer Token: "${idToken.__raw}"`);
         },
 
         handleAuthentication: async function() {
@@ -118,9 +108,6 @@ sap.ui.define([
 
         updateData: async function() {
             const bearerToken = await this.getBearerToken();
-
-            console.log(bearerToken);
-
             const jsonData = await $.ajax({
                 url: 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack',
                 type: 'GET',
@@ -134,6 +121,21 @@ sap.ui.define([
 
             const jsonModel = new JSONModel(jsonData);
             this.getView().setModel(jsonModel);
+        },
+
+        createNewEntry: async function(newEntryAsJSONString) {
+            const bearerToken = await this.getBearerToken();
+            console.log("Createing entry: " + newEntryAsJSONString);
+            const jsonData = await $.ajax({
+                url: 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack',
+                type: 'POST',
+                async: false,
+                data: newEntryAsJSONString,
+                headers: {
+                    "Authorization": `Bearer ${bearerToken}`
+                }
+
+            })
         },
 
         getBearerToken: async function() {
@@ -179,6 +181,15 @@ sap.ui.define([
             const dialogModel = this.getView().getModel("dialog");
             console.log(dialogModel);
             console.log(dialogModel.getJSON());
+            const model = JSON.parse(dialogModel.getJSON());
+            if (model.trackingId) {
+                // update
+
+            } else {
+                // new entry
+                await this.createNewEntry(dialogModel.getJSON());
+                await this.updateData();
+            }
             this.byId('detailDialog').close();
         },
 

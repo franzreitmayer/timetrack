@@ -5,7 +5,7 @@ import 'source-map-support/register';
 import { APIGatewayProxyHandler } from 'aws-lambda'
 //import { formatJSONResponse } from '@libs/apiGateway';
 import { createTimetracking } from '@businessLogic/timetrack'
-import { middyfy } from '@libs/lambda'
+//import { middyfy } from '@libs/lambda'
 import { getUserId } from '@util/userHelper'
 
 
@@ -13,7 +13,7 @@ const createTracking: APIGatewayProxyHandler = async (event) => {
   console.log(JSON.stringify(event))
   
   // extract user id from request
-  const newTimetracking = JSON.parse(event.body);
+  const newTimetracking = JSON.parse(JSON.stringify(event.body));
 
   // set userid from bearer token
   const userId = await getUserId(event);
@@ -32,4 +32,4 @@ const createTracking: APIGatewayProxyHandler = async (event) => {
   }
 }
 
-export const main = middyfy(createTracking);
+export const main = createTracking;

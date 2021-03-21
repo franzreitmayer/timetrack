@@ -7,12 +7,12 @@
       <pages>
         <Page title="{i18n>title}">
           <Toolbar>
-            <Button text="Log On" press="clickLogon"/>
-            <Button text="Log Off" press="clickLogoff" />
-            <Button text="Get Access Token" press="clickGetAccessToken" />
+            <Button text="Log On" press="clickLogon" icon="sap-icon://key" />
+            <Button text="Log Off" press="clickLogoff" icon="sap-icon://log"/>
             <Button text="Create New Entry" press="clickNewEntry" icon="sap-icon://create-entry-time"/>
             <Button text="Edit Entry" press="clickEditEntry" icon="sap-icon://edit" />
             <Button text="Delete Entry" press="clickDeleteEntry" icon="sap-icon://delete" />
+            <Button text="Get Access Token" press="clickGetAccessToken" icon="sap-icon://feedback"/>
           </Toolbar>
           <content>
 
