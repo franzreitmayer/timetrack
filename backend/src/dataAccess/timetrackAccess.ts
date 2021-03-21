@@ -84,10 +84,11 @@ export class TimetrackAccess {
                 }
             }).promise()
             this.LOGGER.info("Successfully updated timetrack", timetrack)
+            return timetrack
         } catch (err) {
             this.LOGGER.error("Error updating timetrack", err, timetrack)
+            return null
         }
-        return timetrack
     }
 
     async deleteTimetrack(trackingId: string, userId: string): Promise<Boolean> {
