@@ -6,11 +6,14 @@ import { APIGatewayProxyHandler } from 'aws-lambda'
 //import { formatJSONResponse } from '@libs/apiGateway';
 import { getAllTimetrackings } from '@businessLogic/timetrack'
 import { middyfy } from '@libs/lambda'
+import { getUserId } from '@util/userHelper'
 
 
 const getAllTrackings: APIGatewayProxyHandler = async (event) => {
   console.log(JSON.stringify(event))
-  const items = await getAllTimetrackings("DUMMY");
+  const userId = getUserId(event)
+  console.log(userId)
+  const items = await getAllTimetrackings(userId);
   return {
 
     

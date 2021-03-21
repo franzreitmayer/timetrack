@@ -43,6 +43,71 @@ export class TimetrackAccess {
         return items as Timetrack[]
     }
 
+    async createTimetrack(timetrack: Timetrack): Promise<Timetrack> {
+        this.LOGGER.info(`Creaing new Timetrack ${JSON.stringify(timetrack)}` );
+        
+        try {
+            await this.docClient.put({
+                TableName: this.timetrackTable,
+                Item: timetrack
+            }).promise();
+            this.LOGGER.info(`Timetrack written to db table ${this.timetrackTable}: ${JSON.stringify(timetrack)}`);
+        } catch (err)  {
+            this.LOGGER.error(`Writing timetrack ${JSON.stringify(timetrack)} to table ${this.timetrackTable} failed`, err);
+        }
+        return timetrack;
+    }
+
+    async updateTimetrack(timetrack: Timetrack): Promise<Timetrack> {
+        this.LOGGER.info(`Updating Timetrack: ${timetrack}`);
+
+        try {
+            await this.docClient.update({
+                TableName: this.timetrackTable,
+                Key: {
+                    userId: timetrack.userId,
+                    trackingId: timetrack.trackingId
+                },
+                UpdateExpression: `set  trackTo=:trackTo, 
+                                        trackFrom=:trackFrom, 
+                                        shortDescription=:shortDescription, 
+                                        longDescription=:longDescription, 
+                                        invoiced=:invoiced, 
+                                        attachmentURL=:attachmentURL`,
+                ExpressionAttributeValues: {
+                    ":trackTo":             timetrack.trackTo,
+                    ":trackFrom":           timetrack.trackFrom,
+                    ":shortDescription":    timetrack.shortDescription,
+                    ":longDescription":     timetrack.longDescription,
+                    ":invoiced":            timetrack.invoiced,
+                    ":attachmentURL":       timetrack.attachmentUrl
+                }
+            }).promise()
+            this.LOGGER.info("Successfully updated timetrack", timetrack)
+        } catch (err) {
+            this.LOGGER.error("Error updating timetrack", err, timetrack)
+        }
+        return timetrack
+    }
+
+    async deleteTimetrack(trackId: string, userId: string): Promise<Boolean> {
+        this.LOGGER.info(`deleting timetrack with id: ${trackId} and userId: ${userId}`)
+
+        try {
+            await this.docClient.delete({
+                TableName: this.timetrackTable,
+                Key: {
+                    "userId": userId,
+                    "trackId": trackId
+                }
+            }).promise()
+            this.LOGGER.info(`Successfully deleted timetrack with id ${trackId} and user ${userId}`) 
+            return true
+        } catch (err) {
+            this.LOGGER.error(`Error while deleting trackId: ${trackId} and userId: ${userId}`, err)
+            return false
+        }
+    }
 }
 
 /**

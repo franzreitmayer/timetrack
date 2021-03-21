@@ -2,7 +2,10 @@ import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
 import getAllTrackings from '@functions/getAllTrackings';
-import authorizeRequest from '@auth/authorizeRequest'
+import authorizeRequest from '@auth/authorizeRequest';
+import createTimetrack from '@functions/createTracking';
+import updateTimetrack from '@functions/updateTracking';
+import deleteTimetrack from '@functions/deleteTracking';
 
 const serverlessConfiguration: AWS = {
   service: 'ttapi',
@@ -31,7 +34,13 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: '20201221',
   },
   // import the function via paths
-  functions: { hello, getAllTrackings, authorizeRequest },
+  functions: { 
+    hello, 
+    getAllTrackings, 
+    authorizeRequest, 
+    createTimetrack, 
+    updateTimetrack, 
+    deleteTimetrack },
   resources: {
     Resources: {
       

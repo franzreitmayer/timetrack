@@ -6,6 +6,9 @@ sap.ui.define([
 ], function(Controller, JSONModel, MessageBox, Fragment) {
     "use strict";
 
+    //const REDIRECT_URL = "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html";
+    const REDIRECT_URL = 'http://localhost:8080/index.html';
+
     return Controller.extend("eu.reitmayer.ttrack.client.timeTrack.controller.MainView", {
 
         onInit: async function() {
@@ -30,7 +33,7 @@ sap.ui.define([
             });
 
             const options = {
-                redirect_uri: "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html"
+                redirect_uri: REDIRECT_URL
             }
             console.log(auth);
 
@@ -46,7 +49,7 @@ sap.ui.define([
                 client_id: "LF6aDev4lIeglOOGdajUE4ZT9cS9yTZB"
             });
             const options = {
-                redirect_uri: "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html"
+                redirect_uri: REDIRECT_URL
             }
             await auth.logout(options);
         },
@@ -89,7 +92,7 @@ sap.ui.define([
             let auth = await this.createAuth();
 
             const options = {
-                    redirect_uri: "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html"
+                    redirect_uri: REDIRECT_URL
                 }
                 // console.log(this.auth);
 
@@ -176,6 +179,10 @@ sap.ui.define([
             const dialogModel = this.getView().getModel("dialog");
             console.log(dialogModel);
             console.log(dialogModel.getJSON());
+            this.byId('detailDialog').close();
+        },
+
+        onDialogCancel: async function() {
             this.byId('detailDialog').close();
         },
 

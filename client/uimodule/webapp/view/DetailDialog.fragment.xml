@@ -33,6 +33,7 @@
         <Label text="Long Description" labelFor="input-longdesc"/>
         <Input id="input-longdesc" required="false" value="{dialog>/longDescription}"/>
 
+        <!--
         <Label text="Upload Attachment" labelFor="input-upload" />
         <u:FileUploader
 			id="input-upload"
@@ -42,11 +43,11 @@
 			uploadComplete="handleUploadComplete"/>
 
         <CheckBox text="Invoiced" selected="{dialog>/invoiced}"/>
-
+        -->    
 
     </l:VerticalLayout>
     <buttons>
-        <Button text="Cancel" icon="sap-icon://decline"/>        
+        <Button text="Cancel" icon="sap-icon://decline" press="onDialogCancel"/>        
         <Button text="Save" icon="sap-icon://save" press="onDialogSave" />
     </buttons>
    </Dialog>
