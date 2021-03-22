@@ -14,30 +14,30 @@ To deploy the backend components you need to run 'sls deploy' at /backend/. To t
 |   \---src                             <-- source files
 |       +---authorization               <-- everything related to authorization apart from aws lambda specific implementation
 |       +---businessLogic               <-- the business logic
-|       +---businessModel
-|       +---dataAccess
-|       +---functions
-|       |   +---authorization
+|       +---businessModel               <-- business model, which is used when possible
+|       +---dataAccess                  <-- implementation of data access to aws dynamodb
+|       +---functions                   <-- implementation of lambda functions
+|       |   +---authorization           <-- authorizer implementation
 |       |   |   \---authorizeRequest
-|       |   +---hello
-|       |   \---http
-|       |       +---createTracking
-|       |       +---deleteTracking
-|       |       +---getAllTrackings
-|       |       +---optionsTracking
-|       |       \---updateTracking
-|       +---libs
-|       \---util
-+---client
-|   \---uimodule
-|       \---webapp
-|           +---controller
-|           +---css
-|           +---i18n
-|           +---model
-|           +---resources
+|       |   +---hello                   <-- not used at project, generate as template by sls and used for reference at moment
+|       |   \---http                    <-- implementation of http services
+|       |       +---createTracking      <-- create request
+|       |       +---deleteTracking      <-- delete request
+|       |       +---getAllTrackings     <-- retrieval request
+|       |       +---optionsTracking     <-- options in order to support preflight requests
+|       |       \---updateTracking      <-- update request
+|       +---libs                        <-- some libraries
+|       \---util                        <-- general utilities
++---client                              <-- client implementations
+|   \---uimodule                        <-- the ui code
+|       \---webapp                      <-- webapplication root
+|           +---controller              <-- controller implementaitons
+|           +---css                     <-- CSS
+|           +---i18n                    <-- i18n translations, not used at the moment
+|           +---model                   <-- models
+|           +---resources               <-- resources
 |           |   \---img
-|           +---script
-|           \---view
-\---postman
+|           +---script                  <-- own and 3rd party scripts
+|           \---view                    <-- view file, here ui5 xml files
+\---postman                             <-- postman collections
 ```
