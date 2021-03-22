@@ -13,7 +13,7 @@ const createTracking: APIGatewayProxyHandler = async (event) => {
   console.log(JSON.stringify(event))
   
   // extract user id from request
-  const newTimetracking = JSON.parse(JSON.stringify(event.body));
+  const newTimetracking = JSON.parse(event.body);
 
   // set userid from bearer token
   const userId = await getUserId(event);
