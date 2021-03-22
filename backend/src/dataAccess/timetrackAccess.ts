@@ -4,8 +4,13 @@ import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 import { createLogger } from '@util/logger'
 import { Timetrack } from '@models/Timetrack'
 
+// XRay Wrapper for AWS Dyanmo db access
 const XAWS = AWSXRay.captureAWS(AWS)
 
+/**
+ * Implements the aws dynamo db data acccess for timetrack business
+ * object
+ */
 export class TimetrackAccess {
     constructor(
         private readonly docClient: DocumentClient = createDynamoDBClient(),
@@ -13,7 +18,12 @@ export class TimetrackAccess {
         private readonly indexName = process.env.SECONDARY_INDEX,
         private readonly LOGGER = createLogger("TIMETRACK_ACCESS")) { }
 
-    async getAllTimetrackings(userId: String): Promise<Timetrack[]> {
+    /**
+     * get all trackings of a certain user
+     * @param userId the user id
+     * @returns the trackings of the user given
+     */
+        async getAllTimetrackings(userId: String): Promise<Timetrack[]> {
         this.LOGGER.info('Getting all todo items')
 
         // const result = await this.docClient.scan(
@@ -43,6 +53,11 @@ export class TimetrackAccess {
         return items as Timetrack[]
     }
 
+    /**
+     * creates the given timetrack object
+     * @param timetrack the timetrack to create
+     * @returns the timetrack object created
+     */
     async createTimetrack(timetrack: Timetrack): Promise<Timetrack> {
         this.LOGGER.info(`Creaing new Timetrack ${JSON.stringify(timetrack)}` );
         
@@ -58,6 +73,11 @@ export class TimetrackAccess {
         return timetrack;
     }
 
+    /**
+     * updates the given timetrack
+     * @param timetrack timetrack to be updated
+     * @returns the updated object
+     */
     async updateTimetrack(timetrack: Timetrack): Promise<Timetrack> {
         this.LOGGER.info(`Updating Timetrack: ${timetrack}`);
         console.log(timetrack);
@@ -92,6 +112,12 @@ export class TimetrackAccess {
         }
     }
 
+    /**
+     * deletes the timetrack identified by the compound key userId/trackingid
+     * @param trackingId 
+     * @param userId 
+     * @returns true if successful 
+     */
     async deleteTimetrack(trackingId: string, userId: string): Promise<Boolean> {
         this.LOGGER.info(`deleting timetrack with id: ${trackingId} and userId: ${userId}`)
 
