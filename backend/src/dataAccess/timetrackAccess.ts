@@ -60,6 +60,8 @@ export class TimetrackAccess {
 
     async updateTimetrack(timetrack: Timetrack): Promise<Timetrack> {
         this.LOGGER.info(`Updating Timetrack: ${timetrack}`);
+        console.log(timetrack);
+        console.log(`Type of timetrack ${typeof timetrack}`);
 
         try {
             await this.docClient.update({
@@ -68,19 +70,18 @@ export class TimetrackAccess {
                     userId: timetrack.userId,
                     trackingId: timetrack.trackingId
                 },
-                UpdateExpression: `set  trackTo=:trackTo, 
+                UpdateExpression: `set  trackTo=:trackTo,
                                         trackFrom=:trackFrom, 
-                                        shortDescription=:shortDescription, 
-                                        longDescription=:longDescription, 
-                                        invoiced=:invoiced, 
-                                        attachmentURL=:attachmentURL`,
+                                        shortDescription=:shortDescription,
+                                        longDescription=:longDescription,
+                                        invoiced=:invoiced
+                                        `,
                 ExpressionAttributeValues: {
                     ":trackTo":             timetrack.trackTo,
                     ":trackFrom":           timetrack.trackFrom,
                     ":shortDescription":    timetrack.shortDescription,
                     ":longDescription":     timetrack.longDescription,
-                    ":invoiced":            timetrack.invoiced,
-                    ":attachmentUrl":       timetrack.attachmentUrl
+                    ":invoiced":            timetrack.invoiced
                 }
             }).promise()
             this.LOGGER.info("Successfully updated timetrack", timetrack)

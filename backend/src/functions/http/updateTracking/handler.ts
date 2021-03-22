@@ -8,14 +8,22 @@ import { APIGatewayProxyHandler } from 'aws-lambda'
 import { updateTimetracking } from '@businessLogic/timetrack'
 import { middyfy } from '@libs/lambda'
 // import { getUserId } from '@util/userHelper'
-// import { Timetrack } from '@models/Timetrack'
+import { Timetrack } from '@models/Timetrack'
 
 const updateTracking: APIGatewayProxyHandler = async (event) => {
   console.log(JSON.stringify(event))
+  console.log(`Type of event.body: ${typeof event.body}` )
+  let trackingToBeUpdated:Timetrack = null;
+  if (typeof event.body == 'string') {
+    trackingToBeUpdated = JSON.parse(event.body);
+  } else {
+    trackingToBeUpdated = event.body;
+  }
+  console.log(`did conversions. type of trackingToBeUpdated is ${typeof trackingToBeUpdated}`)
   
   // extract payload
   console.log(`event.body = ${event.body}`);
-  const trackingToBeUpdated = JSON.parse(JSON.stringify(event.body)) ;
+  // const trackingToBeUpdated = JSON.parse(JSON.stringify(event.body)) as Timetrack ;
 
   // set userid from bearer token
   // const userId = await getUserId(event);

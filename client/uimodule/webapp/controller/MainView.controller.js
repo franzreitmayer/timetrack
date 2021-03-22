@@ -2,12 +2,14 @@ sap.ui.define([
     "eu/reitmayer/ttrack/client/timeTrack/controller/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
+    "sap/m/MessageToast",
     "sap/ui/core/Fragment"
-], function(Controller, JSONModel, MessageBox, Fragment) {
+], function(Controller, JSONModel, MessageBox, MessageToast, Fragment) {
     "use strict";
 
     //const REDIRECT_URL = "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html";
     const REDIRECT_URL = 'http://localhost:8080/index.html';
+    const TIMETRACK_SERVICE_URL = 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack';
 
     return Controller.extend("eu.reitmayer.ttrack.client.timeTrack.controller.MainView", {
 
@@ -52,6 +54,10 @@ sap.ui.define([
                 redirect_uri: REDIRECT_URL
             }
             await auth.logout(options);
+        },
+
+        clickRefresh: async function(event) {
+            await this.updateData();
         },
 
         clickGetAccessToken: async function(event) {
@@ -109,7 +115,7 @@ sap.ui.define([
         updateData: async function() {
             const bearerToken = await this.getBearerToken();
             const jsonData = await $.ajax({
-                url: 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack',
+                url: TIMETRACK_SERVICE_URL,
                 type: 'GET',
                 async: false,
                 headers: {
@@ -123,11 +129,11 @@ sap.ui.define([
             this.getView().setModel(jsonModel);
         },
 
-        createNewEntry: async function(newEntryAsJSONString) {
+        createTimetracking: async function(newEntryAsJSONString) {
             const bearerToken = await this.getBearerToken();
             console.log("Createing entry: " + newEntryAsJSONString);
             const jsonData = await $.ajax({
-                url: 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack',
+                url: TIMETRACK_SERVICE_URL,
                 type: 'POST',
                 async: false,
                 data: newEntryAsJSONString,
@@ -135,6 +141,35 @@ sap.ui.define([
                     "Authorization": `Bearer ${bearerToken}`
                 }
 
+            })
+        },
+
+        updateTimetracking: async function(updatedEntryAsJSONString) {
+            const bearerToken = await this.getBearerToken();
+            console.log("Updating entry: " + updatedEntryAsJSONString);
+            const jsonData = await $.ajax({
+                url: TIMETRACK_SERVICE_URL,
+                type: 'PATCH',
+                async: false,
+                data: updatedEntryAsJSONString,
+                headers: {
+                    "Authorization": `Bearer ${bearerToken}`,
+                    "Content-Type": "application/json"
+                }
+            })
+        },
+
+        deleteTimetracking: async function(timetrackIdToDelete) {
+            const bearerToken = await this.getBearerToken();
+            console.log(`Deleting entry with id ${timetrackIdToDelete}`);
+            const resultData = await $.ajax({
+                url: TIMETRACK_SERVICE_URL + `/${timetrackIdToDelete}`,
+                type: 'DELETE',
+                async: false,
+                headers: {
+                    "Authorization": `Bearer ${bearerToken}`,
+                    "Content-Type": "application/json"
+                }
             })
         },
 
@@ -177,6 +212,20 @@ sap.ui.define([
             });
         },
 
+        clickDeleteEntry: async function() {
+            const selectedTimetrack = await this.getSelectedEntry();
+            if (!selectedTimetrack || !selectedTimetrack.trackingId) {
+                MessageToast.show('Please select a timetrack entry first.');
+            }
+            const timetrackIdToDelete = selectedTimetrack.trackingId;
+            try {
+                await this.deleteTimetracking(timetrackIdToDelete);
+                await this.updateData();
+            } catch (err) {
+                console.error(err);
+            }
+        },
+
         onDialogSave: async function() {
             const dialogModel = this.getView().getModel("dialog");
             console.log(dialogModel);
@@ -184,10 +233,12 @@ sap.ui.define([
             const model = JSON.parse(dialogModel.getJSON());
             if (model.trackingId) {
                 // update
+                await this.updateTimetracking(dialogModel.getJSON());
+                await this.updateData();
 
             } else {
                 // new entry
-                await this.createNewEntry(dialogModel.getJSON());
+                await this.createTimetracking(dialogModel.getJSON());
                 await this.updateData();
             }
             this.byId('detailDialog').close();

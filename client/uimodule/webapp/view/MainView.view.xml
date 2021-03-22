@@ -9,6 +9,7 @@
           <Toolbar>
             <Button text="Log On" press="clickLogon" icon="sap-icon://key" />
             <Button text="Log Off" press="clickLogoff" icon="sap-icon://log"/>
+            <Button text="Refresh Data" press="clickRefresh" icon="sap-icon://synchronize" />
             <Button text="Create New Entry" press="clickNewEntry" icon="sap-icon://create-entry-time"/>
             <Button text="Edit Entry" press="clickEditEntry" icon="sap-icon://edit" />
             <Button text="Delete Entry" press="clickDeleteEntry" icon="sap-icon://delete" />
@@ -16,7 +17,7 @@
           </Toolbar>
           <content>
 
-            <t:Table rows="{/items}" id="table" visibleRowCount="7" minAutoRowCount="5" selectionMode="Single" selectionBehavior="RowOnly">
+            <t:Table rows="{/items}" id="table" visibleRowCount="20" minAutoRowCount="10" selectionMode="Single" selectionBehavior="RowOnly">
               <t:columns>
                 <t:Column >
                   <Label text="From" />
