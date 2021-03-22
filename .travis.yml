@@ -1,0 +1,48 @@
+language: node_js
+node_js:
+  - 14
+
+install:
+  - echo "nothing to install"
+  - npm install ui5-middleware-livereload @ui5/cli serverless
+
+before_script:
+  - echo "nothing"
+  - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+  - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+
+script:
+  - pwd
+  - which npm
+  - ls -l
+  - cd client
+  - pwd
+  - ls -l
+  - which npm
+  - npm install
+  - ui5 --config ./uimodule/ui5.yaml build
+  - pwd
+  - ls -l
+  - cd ..
+  - cd backend
+  - pwd
+  - ls -l
+  - npm install
+  - sls deploy -v
+  - cd ..
+
+deploy:
+  provider: s3
+  access_key_id: ${AWS_ACCESS_KEY_ID}
+  secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+  bucket: ${AWS_BUCKET}
+  skip_clean: true
+  local_dir: /home/travis/build/franzreitmayer/timetrack/client/dist/
+  on: 
+    branch: dev
+
+after_success:
+  - echo "nothing todo so far"
+
+
+
