@@ -9,7 +9,7 @@ sap.ui.define([
     "use strict";
 
     const REDIRECT_URL = "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html";
-    // const REDIRECT_URL = 'http://localhost:8080/index.html';
+    // const REDIRECT_URL = 'REDIRECT_URL_PLACEHOLDER';
     const TIMETRACK_SERVICE_URL = 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack';
 
     return Controller.extend("eu.reitmayer.ttrack.client.timeTrack.controller.MainView", {
