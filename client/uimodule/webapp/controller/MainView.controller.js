@@ -210,8 +210,8 @@ sap.ui.define([
                 let dialogJsonData = {
                     "shortDescription": "",
                     "attachmentURL": "",
-                    "trackTo": (new Date()).toDateString(),
-                    "trackFrom": (new Date()).toISOString(),
+                    "trackTo": "",
+                    "trackFrom": "",
                     "longDescription": "",
                     "invoiced": false
                 };
