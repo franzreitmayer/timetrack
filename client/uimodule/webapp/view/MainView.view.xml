@@ -13,7 +13,7 @@
             <Button text="Create New Entry" press="clickNewEntry" icon="sap-icon://create-entry-time"/>
             <Button text="Edit Entry" press="clickEditEntry" icon="sap-icon://edit" />
             <Button text="Delete Entry" press="clickDeleteEntry" icon="sap-icon://delete" />
-            <Button text="Get Access Token" press="clickGetAccessToken" icon="sap-icon://feedback"/>
+            <!-- <Button text="Get Access Token" press="clickGetAccessToken" icon="sap-icon://feedback"/> -->
           </Toolbar>
           <content>
 
