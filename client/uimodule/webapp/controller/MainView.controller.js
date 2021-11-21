@@ -3,12 +3,13 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
     "sap/m/MessageToast",
-    "sap/ui/core/Fragment"
-], function(Controller, JSONModel, MessageBox, MessageToast, Fragment) {
+    "sap/ui/core/Fragment",
+    "sap/ui/core/BusyIndicator"
+], function(Controller, JSONModel, MessageBox, MessageToast, Fragment, BusyIndicator) {
     "use strict";
 
     const REDIRECT_URL = "https://ttbucket-dev.s3.eu-central-1.amazonaws.com/index.html";
-    // const REDIRECT_URL = 'http://localhost:8080/index.html';
+    // const REDIRECT_URL = 'REDIRECT_URL_PLACEHOLDER';
     const TIMETRACK_SERVICE_URL = 'https://v5d0p4616i.execute-api.eu-central-1.amazonaws.com/dev/timetrack';
 
     return Controller.extend("eu.reitmayer.ttrack.client.timeTrack.controller.MainView", {
@@ -113,6 +114,7 @@ sap.ui.define([
         },
 
         updateData: async function() {
+            BusyIndicator.show();
             const bearerToken = await this.getBearerToken();
             const jsonData = await $.ajax({
                 url: TIMETRACK_SERVICE_URL,
@@ -127,9 +129,11 @@ sap.ui.define([
 
             const jsonModel = new JSONModel(jsonData);
             this.getView().setModel(jsonModel);
+            BusyIndicator.hide();
         },
 
         createTimetracking: async function(newEntryAsJSONString) {
+            BusyIndicator.show();
             const bearerToken = await this.getBearerToken();
             console.log("Createing entry: " + newEntryAsJSONString);
             const jsonData = await $.ajax({
@@ -142,9 +146,11 @@ sap.ui.define([
                 }
 
             })
+            BusyIndicator.hide();
         },
 
         updateTimetracking: async function(updatedEntryAsJSONString) {
+            BusyIndicator.show();
             const bearerToken = await this.getBearerToken();
             console.log("Updating entry: " + updatedEntryAsJSONString);
             const jsonData = await $.ajax({
@@ -157,9 +163,11 @@ sap.ui.define([
                     "Content-Type": "application/json"
                 }
             })
+            BusyIndicator.hide();
         },
 
         deleteTimetracking: async function(timetrackIdToDelete) {
+            
             const bearerToken = await this.getBearerToken();
             console.log(`Deleting entry with id ${timetrackIdToDelete}`);
             const resultData = await $.ajax({
@@ -171,6 +179,7 @@ sap.ui.define([
                     "Content-Type": "application/json"
                 }
             })
+            
         },
 
         getBearerToken: async function() {
@@ -201,8 +210,8 @@ sap.ui.define([
                 let dialogJsonData = {
                     "shortDescription": "",
                     "attachmentURL": "",
-                    "trackTo": (new Date()).toDateString(),
-                    "trackFrom": (new Date()).toISOString(),
+                    "trackTo": "",
+                    "trackFrom": "",
                     "longDescription": "",
                     "invoiced": false
                 };

@@ -21,3 +21,11 @@ server:
       configuration:
         port: 35729
         path: uimodule/webapp
+builder:
+  customTasks:
+    - name: ui5-task-stringreplacer
+      afterTask: replaceVersion
+      configuration: 
+        files:
+          - "**/*.js"
+          - "**/*.xml"

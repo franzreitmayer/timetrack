@@ -1,6 +1,6 @@
 # timetrack
 
-## Description od the applicationj
+## Description od the application
 Timetrack is a simple web application to track working time. 
 
 ## Backend technology overview
